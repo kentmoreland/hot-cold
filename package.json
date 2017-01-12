@@ -22,10 +22,13 @@
   "homepage": "https://github.com/kentmoreland/hot-cold#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "bower": "^1.8.0",
     "express": "^4.14.0"
   },
   "devDependencies": {
     "grunt": "^1.0.1",
-    "grunt-contrib-jshint": "^1.1.0"
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0"
   }
 }

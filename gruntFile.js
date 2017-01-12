@@ -5,11 +5,30 @@ module.exports = (grunt) => {
       options: {
         esnext: true
       }
+    },
+    sass: {
+      dist: {
+        files: {
+          'client/css/main.css' : 'client/css/main.scss'
+        }
+      }
+    },
+    watch: {
+      css: {
+       files: 'client/css/*.scss',
+       tasks: ['sass'],
+       options: {
+        spawn: false,
+       }
+      }
     }
 
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('default', ['jshint']);
+  grunt.registerTask('jshint', ['jshint']);
+  grunt.registerTask('default', ['watch']);
 };

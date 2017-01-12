@@ -7,9 +7,16 @@
 </head>
 <body>
   <h1>Hot or Cold</h1>
-  <form action="/">
+  <form action="#">
     <label for="number">choose a number between 1 and 100</label>
-    <input type="text" name="number">
+    <input id="guess" type="number" name="number">
+    <button id="player_guess" type="submit">Guess</button>
   </form>
+  <div id="message">
+
+  </div>
+
+  <script src="libs/jquery/dist/jquery.min.js"></script>
+  <script src="js/scripts.js"></script>
 </body>
 </html>

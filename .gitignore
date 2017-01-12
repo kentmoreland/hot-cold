@@ -10,4 +10,4 @@ configuration/awsInfo.txt
 
 # Dependencies
 node_modules/
-public/libs/
+client/libs/
