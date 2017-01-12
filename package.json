@@ -1,0 +1,31 @@
+{
+  "name": "hot-cold",
+  "version": "1.0.0",
+  "description": "A guess the number game",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kentmoreland/hot-cold.git"
+  },
+  "keywords": [
+    "hot",
+    "cold"
+  ],
+  "author": "Kent Moreland <kentmoreland@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kentmoreland/hot-cold/issues"
+  },
+  "homepage": "https://github.com/kentmoreland/hot-cold#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-jshint": "^1.1.0"
+  }
+}

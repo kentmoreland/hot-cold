@@ -1,0 +1,13 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+#config file/awsInfo
+configuration/config.js
+configuration/awsInfo.txt
+
+
+# Dependencies
+node_modules/
+public/libs/
