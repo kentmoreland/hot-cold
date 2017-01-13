@@ -11,3 +11,6 @@ configuration/awsInfo.txt
 # Dependencies
 node_modules/
 client/libs/
+
+# Docs
+docs.txt
