@@ -3,7 +3,7 @@ module.exports = (grunt) => {
     jshint: {
       files: ['*.js', 'client/js/*.js'],
       options: {
-        esnext: true
+        esnext: true,
       }
     },
     sass: {
@@ -29,6 +29,6 @@ module.exports = (grunt) => {
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('jshint', ['jshint']);
+  grunt.registerTask('lint', ['jshint']);
   grunt.registerTask('default', ['watch']);
 };
