@@ -1,10 +1,10 @@
-  class PreviousGuess {
-    constructor(value) {
-      this.value = value;
-    }
+class PreviousGuess {
+  constructor(value) {
+    this.value = value;
+  }
 
-    getDistanceFrom(target) {
-      return Math.abs(this.value - target);
-    };
-
+  getDistanceFrom(target) {
+    return Math.abs(this.value - target);
   };
+
+};
