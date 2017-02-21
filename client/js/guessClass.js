@@ -9,15 +9,6 @@
       this.status;
     };
 
-    validateGuess() {
-      if( this.inputHasValue() && this.inputGreaterThanZero() &&
-        this.inputLessThanMax() && this.inputIsNotDuplicateGuess() ) {
-        this.clearGuess();
-        this.inputFocus();
-        return this.isValid = true;
-      }
-    };
-
     getGuessValueFromFieldId() {
       this.setValueFromFormId(INPUT_ID);
       if(this.validateGuess()) {
@@ -27,42 +18,34 @@
       }
     };
 
-                  // Guess Distance From Target
-// --------------------------------------------------------
-
-    isCloserTo(target) {
-      if(this.getDistanceFrom(target) <
-        this.previousGuess.getDistanceFrom(target)){
-        this.message = new GuessStatusIsGettingWarm();
-        this.message.displayMessage();
-        return true;
+    validateGuess() {
+      if( this.inputHasValue() && this.inputGreaterThanZero() &&
+        this.inputLessThanMax() && this.inputIsNotDuplicateGuess() ) {
+        this.clearGuess();
+        this.inputFocus();
+        return this.isValid = true;
       }
     };
 
-    isFartherFrom(target){
-      if(this.getDistanceFrom(target) >
-        this.previousGuess.getDistanceFrom(target)){
-        this.message = new GuessStatusIsGettingColder();
-        this.message.displayMessage();
-        return true;
-      }
+    evaluateDistanceFrom(target) {
+      this.guessEquals(target)
+      this.guessDistanceGreaterThanFifteen(target);
+      this.guessDistanceLessThanFifteen(target);
+      this.guessDistanceLessThanTen(target);
+      this.guessDistanceLessThanFive(target);
     };
 
-    isEquallyCloseTo(target) {
-      if( this.getDistanceFrom(target) ===
-        this.previousGuess.getDistanceFrom(target) ){
-        this.message = new GuessStatusUnchanged();
-        this.message.displayMessage();
-        return true;
-      }
-    };
+    compareCurrentAndPreviousGuessDistanceFrom(target){
+      this.isCloserTo(target);
+      this.isFartherFrom(target);
+      this.isEquallyCloseTo(target);
+    }
 
     guessEquals(target) {
       if(this.guessValue === target) {
-        this.status.clearStatus();
         throw 'Winner Winner Chicken Dinner!';
       }
-    }
+    };
 
     guessDistanceLessThanFive(target) {
       if(this.getDistanceFrom(target) <= 5){
@@ -98,22 +81,33 @@
       }
     };
 
-
-    processDistanceFrom(target) {
-      this.guessEquals(target)
-      this.guessDistanceGreaterThanFifteen(target);
-      this.guessDistanceLessThanFifteen(target);
-      this.guessDistanceLessThanTen(target);
-      this.guessDistanceLessThanFive(target);
+    isCloserTo(target) {
+      if(this.getDistanceFrom(target) <
+        this.previousGuess.getDistanceFrom(target)){
+        this.message = new GuessStatusIsGettingWarm();
+        this.message.displayMessage();
+        return true;
+      }
     };
 
-    compareCurrentAndPreviousGuess(target){
-      this.isCloserTo(target);
-      this.isFartherFrom(target);
-      this.isEquallyCloseTo(target);
-    }
+    isFartherFrom(target){
+      if(this.getDistanceFrom(target) >
+        this.previousGuess.getDistanceFrom(target)){
+        this.message = new GuessStatusIsGettingColder();
+        this.message.displayMessage();
+        return true;
+      }
+    };
 
-// --------------------------------------------------------
+    isEquallyCloseTo(target) {
+      if( this.getDistanceFrom(target) ===
+        this.previousGuess.getDistanceFrom(target) ){
+        this.message = new GuessStatusUnchanged();
+        this.message.displayMessage();
+        return true;
+      }
+    };
+
     incrementGuessCount() {
       this.count++;
     };
@@ -141,13 +135,11 @@
       $(INPUT_ID).val('');
     };
 
-                    // Input
-// --------------------------------------------------------
     inputHasValue(){
       if(isNaN(this.guessValue) === false){
         return true;
       }else{
-        throw'inputEmpty failed'
+        throw'Input field cannot be blank';
       }
     };
 
@@ -155,7 +147,7 @@
       if(this.guessValue > 0){
         return this.isValid = true;
       }else{
-        throw 'greaterThanZero failed'
+        throw 'Number must be greater than zero';
       }
     };
 
@@ -163,7 +155,7 @@
       if(this.guessValue < MAX_NUMBER){
         return this.isValid = true;
       }else{
-        throw 'lessThanMax failed'
+        throw `Number must be less than ${MAX_NUMBER}`
       }
     };
 
@@ -171,7 +163,7 @@
       if(this.guesses.indexOf(this.guessValue) < 0){
         return this.isValid = true;
       }else{
-        throw 'isNotDuplicateGuess failed'
+        throw `You've already guessed ${this.guessValue}`
       }
     };
 
@@ -179,7 +171,6 @@
       $(INPUT_ID).focus();
     };
 
-// --------------------------------------------------------
     getDistanceFrom(target){
       return Math.abs(this.guessValue - target);
     };
@@ -187,6 +178,7 @@
     setValueFromFormId() {
       this.guessValue = parseInt($(INPUT_ID).val());
     };
+
   };
 
 

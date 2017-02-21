@@ -44,12 +44,13 @@ class Game {
         event.preventDefault();
         this.getCurrentGuess();
         this.currentGuess.setPreviousGuess();
-        this.currentGuess.processDistanceFrom(this.getTarget().value)
+        this.currentGuess.evaluateDistanceFrom(this.getTarget().value)
         this.currentGuess
-        .compareCurrentAndPreviousGuess(this.getTarget().value)
+        .compareCurrentAndPreviousGuessDistanceFrom(this.getTarget().value)
       }
       catch(error){
         $(MESSAGE_ID).text(error);
+        this.currentGuess.status.clearStatus();
         this.currentGuess.clearGuess();
       }
     };
