@@ -1,6 +1,6 @@
 expect = chai.expect;
 
-describe('constant variables', function() {
+describe('Constant variables', function() {
   it ('should have a variable MAX_NUMBER', function() {
     expect(MAX_NUMBER).to.exist;
   });
